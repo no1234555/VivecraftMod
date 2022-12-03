@@ -9,9 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "Multiloader-1.18" ]
+    branches: [ "YVR" ]
   pull_request:
-    branches: [ "Multiloader-1.18" ]
+    branches: [ "YVR" ]
 
 permissions:
   contents: read
