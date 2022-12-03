@@ -407,8 +407,6 @@ public abstract class MinecraftVRMixin extends ReentrantBlockableEventLoop<Runna
 
 	//Replaces normal runTick
 	public void newRunTick(boolean bl) {
-		VLoader.setEGL();
-
 		this.window.setErrorSection("Pre render");
 		// long l = Util.getNanos();
 		if (this.window.shouldClose()) {
