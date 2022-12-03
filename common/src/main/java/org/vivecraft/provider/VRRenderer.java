@@ -18,9 +18,11 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.level.dimension.DimensionType;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GL43;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.vivecraft.ClientDataHolder;
 import org.vivecraft.GlStateHelper;
@@ -42,6 +44,7 @@ import org.vivecraft.utils.LangHelper;
 import org.vivecraft.Xplat;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -442,6 +445,8 @@ public abstract class VRRenderer
 
     public void setupRenderConfiguration() throws Exception
     {
+        VLoader.setEGLGlobal();
+
         Minecraft minecraft = Minecraft.getInstance();
         ClientDataHolder dataholder = ClientDataHolder.getInstance();
         boolean flag = false;
@@ -829,7 +834,6 @@ public abstract class VRRenderer
             if (Xplat.isModLoaded("iris") || Xplat.isModLoaded("oculus")) {
                 IrisHelper.reload();
             }
-
         }
     }
 
