@@ -1,5 +1,6 @@
 package org.vivecraft;
 
+import com.mojang.blaze3d.pipeline.RenderTarget;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.storage.LevelResource;
@@ -48,5 +49,20 @@ public interface Xplat {
     @ExpectPlatform
     static boolean isModLoadedSuccess() {
         return false;
+    }
+
+    @ExpectPlatform
+    static boolean enableRenderTargetStencil(RenderTarget renderTarget) {
+        return false;
+    }
+
+    @ExpectPlatform
+    static Path getJarPath() {
+        return null;
+    }
+
+    @ExpectPlatform
+    static String getUseMethodName() {
+        return "";
     }
 }
