@@ -12,7 +12,7 @@ on:
     branches: [ "Multiloader-1.18" ]
   pull_request:
     branches: [ "Multiloader-1.18" ]
-
+  workflow_dispatch:
 permissions:
   contents: read
 
