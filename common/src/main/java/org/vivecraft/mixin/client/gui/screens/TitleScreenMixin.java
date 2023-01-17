@@ -46,7 +46,7 @@ public abstract class TitleScreenMixin extends Screen {
     private void addVRModeButton() {
 
         // get first button, to position warnings
-        firstButton = (AbstractWidget)renderables.get(0);
+        firstButton = (AbstractWidget) renderables.get(0);
 
         try {
             if (!Files.exists(vrConfigPath)) {
@@ -60,25 +60,6 @@ public abstract class TitleScreenMixin extends Screen {
             throw new RuntimeException(e);
         }
         String vrMode = Boolean.parseBoolean(vrConfig.getProperty("vrStatus")) ? "VR" : "NONVR";
-        vrModeButton = new Button(this.width / 2 + 104, this.height / 4 + 72, 56, 20, new TextComponent(getIcon() + vrMode), (button) -> {
-            showError = false;
-            String newMode;
-            if (button.getMessage().getString().endsWith("NONVR")) {
-                vrConfig.setProperty("vrStatus", String.valueOf(true));
-                newMode = "VR";
-            } else {
-                vrConfig.setProperty("vrStatus", String.valueOf(false));
-                newMode = "NONVR";
-            }
-            try {
-                vrConfig.store(Files.newOutputStream(vrConfigPath), "This file stores if VR should be enabled.");
-            } catch (IOException e) {
-                showError = true;
-            }
-
-            button.setMessage(new TextComponent(getIcon() + newMode));
-        });
-        this.addRenderableWidget(vrModeButton);
     }
 
     private String getIcon() {
