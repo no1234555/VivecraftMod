@@ -22,6 +22,8 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.vivecraft.extensions.RenderTargetExtension;
 import org.vivecraft.mixin.blaze3d.systems.RenderSystemAccessor;
 
+import java.nio.IntBuffer;
+
 @Debug(export = true)
 @Mixin(RenderTarget.class)
 public abstract class RenderTargetMixin implements RenderTargetExtension {
