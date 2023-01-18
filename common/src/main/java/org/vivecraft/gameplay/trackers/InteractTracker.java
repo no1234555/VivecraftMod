@@ -3,7 +3,6 @@ package org.vivecraft.gameplay.trackers;
 import java.util.HashSet;
 
 import org.vivecraft.ClientDataHolder;
-import org.vivecraft.Xplat;
 import org.vivecraft.extensions.PlayerExtension;
 import org.vivecraft.api.VRData;
 import org.vivecraft.provider.ControllerType;
@@ -127,15 +126,20 @@ public class InteractTracker extends Tracker
         {
             this.rightClickable = new HashSet<>();
 
-            String name = Xplat.getUseMethodName();
+            String name = "use";
+            String unmappedName = "method_9534";
             for (Object object : Registry.BLOCK)
             {
                 Class<?> oclass = object.getClass();
 
                 try
                 {
-                    if (oclass.getMethod(name,
-                            BlockState.class,
+                    if (oclass.getMethod(name, BlockState.class,
+                            net.minecraft.world.level.Level.class,
+                            BlockPos.class,
+                            net.minecraft.world.entity.player.Player.class,
+                            InteractionHand.class,
+                            BlockHitResult.class).getDeclaringClass() == oclass || oclass.getMethod(unmappedName, BlockState.class,
                             net.minecraft.world.level.Level.class,
                             BlockPos.class,
                             net.minecraft.world.entity.player.Player.class,
@@ -152,8 +156,12 @@ public class InteractTracker extends Tracker
 
                 try
                 {
-                    if (oclass.getMethod(name,
-                            BlockState.class,
+                    if (oclass.getMethod(name, BlockState.class,
+                            net.minecraft.world.level.Level.class,
+                            BlockPos.class,
+                            net.minecraft.world.entity.player.Player.class,
+                            InteractionHand.class,
+                            BlockHitResult.class).getDeclaringClass() == oclass || oclass.getMethod(unmappedName, BlockState.class,
                             net.minecraft.world.level.Level.class,
                             BlockPos.class,
                             net.minecraft.world.entity.player.Player.class,
