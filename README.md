@@ -10,5 +10,3 @@ A port of https://github.com/jrbudda/Vivecraft_118 to fabric (and back to forge)
 - [x] Fully playable
 - [x] Sodium support
 - [ ] Iris support
-
-[Discord server](https://discord.gg/jYyyv7zhSW)
