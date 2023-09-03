@@ -15,6 +15,7 @@ import org.vivecraft.client_vr.provider.MCVR;
 import org.vivecraft.client_vr.provider.VRRenderer;
 import org.vivecraft.client_vr.render.RenderConfigException;
 import org.vivecraft.client_vr.render.RenderPass;
+import org.vivecraft.utils.VLoader;
 
 import static org.lwjgl.openvr.VRCompositor.*;
 import static org.lwjgl.openvr.VRSystem.*;
@@ -89,13 +90,15 @@ public class OpenVRStereoRenderer extends VRRenderer {
         RenderSystem.texParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
         GlStateManager._texImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA8, lwidth, lheight, 0, GL11.GL_RGBA, GL11.GL_INT, null);
         RenderSystem.bindTexture(i);
-        this.openvr.texType0.handle(this.LeftEyeTextureId);
+        nativeImageL = VLoader.createGLImage(lwidth, lheight);
+        this.openvr.texType0.handle(nativeImageL);
         this.openvr.texType0.eColorSpace(VR.EColorSpace_ColorSpace_Gamma);
         this.openvr.texType0.eType(VR.ETextureType_TextureType_OpenGL);
 
         this.RightEyeTextureId = GlStateManager._genTexture();
         i = GlStateManager._getInteger(GL11.GL_TEXTURE_BINDING_2D);
-        RenderSystem.bindTexture(this.RightEyeTextureId);
+        nativeImageR = VLoader.createGLImage(lwidth, lheight);
+        this.openvr.texType0.handle(nativeImageR);
         RenderSystem.texParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
         RenderSystem.texParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
         GlStateManager._texImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA8, lwidth, lheight, 0, GL11.GL_RGBA, GL11.GL_INT, null);
