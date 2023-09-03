@@ -29,7 +29,6 @@ public abstract class OpenVRMixin {
     @Shadow @Nullable public static OpenVR.IVRInput VRInput;
     @Shadow @Nullable public static OpenVR.IVRIOBuffer VRIOBuffer;
     @Shadow @Nullable public static OpenVR.IVRSpatialAnchors VRSpatialAnchors;
-    @Shadow @Nullable public static OpenVR.IVRDebug VRDebug;
     @Shadow @Nullable public static OpenVR.IVRNotifications VRNotifications;
     @Shadow private static int token;
 
