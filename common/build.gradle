@@ -11,25 +11,60 @@ dependencies {
     // Do NOT use other classes from fabric loader
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
 
+    modApi("dev.architectury:architectury-fabric:${rootProject.architectury_version}")
+
+    // for sodium compat
     modCompileOnly "maven.modrinth:sodium:mc1.18.2-0.4.1"
-    modCompileOnly "maven.modrinth:iris:1.18.x-v1.3.1"
-    modCompileOnly "maven.modrinth:lithium:mc1.18.2-0.7.10"
+    modCompileOnly "maven.modrinth:sodium:mc1.19.3-0.4.9"
+    modCompileOnly "883067831485366304:1076634925077364786:sodium-fabric-mc1.19.3-0.4.10rev.c131708-dirty:jar"
+    modCompileOnly "maven.modrinth:rubidium:0.5.6"
+
+
+    // for iris compat
+    modCompileOnly "maven.modrinth:iris:1.6.5+1.18.2"
+
+    // for REI compat
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:8.3.618"
+
+    // for Pehkui compat
+    modApi("com.github.Virtuoel:Pehkui:3.7.7", { exclude group: "net.fabricmc.fabric-api" })
+
+    // other mods
+    // modCompileOnly("com.simibubi.create:create-fabric-1.18.2:0.5.0.i-1016+1.18.2")
+    modCompileOnly "maven.modrinth:lithium:mc1.18.2-0.10.3"
     modCompileOnly "maven.modrinth:indium:1.0.7+mc1.18.2"
-    modCompileOnly "maven.modrinth:create-fabric:0.5.0.i-960+1.18.2"
-    modCompileOnly "maven.modrinth:roughly-enough-items:8.3.529+fabric"
 
-    modCompileOnly("maven.modrinth:rubidium:0.5.3a")
+    /*
+    // for immersive portals compat
+    modCompileOnly ('com.github.qouteall.ImmersivePortalsMod:imm_ptl_core:v1.4.11-1.18'){ //temp immersiveportals
+        exclude(group: "net.fabricmc.fabric-api")
+        transitive(false)
+    }
+    modCompileOnly ('com.github.qouteall.ImmersivePortalsMod:q_misc_util:v1.4.11-1.18'){ //temp immersiveportals
+        exclude(group: "net.fabricmc.fabric-api")
+        transitive(false)
+    }
+    */
 
-    //include("org.lwjgl:lwjgl-ovr:3.2.2:natives-windows")
-    //include("org.lwjgl:lwjgl-opengl:3.2.2:natives-windows")
-    //include("org.lwjgl:lwjgl-jemalloc:3.2.2:natives-windows")
-    //include("org.lwjgl:lwjgl:3.2.2:natives-windows")
-    //include("org.lwjgl:lwjgl-glfw:3.2.2:natives-windows")
-    //include("org.lwjgl:lwjgl-stb:3.2.2:natives-windows")
-    //include("org.lwjgl:lwjgl-openal:3.2.2:natives-windows")
+    // needed dependencies
+    compileOnly("com.google.code.findbugs:jsr305:3.0.2")
+    compileOnly('com.electronwill.night-config:toml:3.6.6')
 
+    //LaunchPopup
+    implementation 'com.github.fayer3:LaunchPopup:master-SNAPSHOT'
 
-
+}
+// extract the LaunchPopup classes
+jar {
+    from {
+        configurations
+            .runtimeClasspath
+            .collect {
+                if(it.name.startsWith("LaunchPopup")) {
+                    zipTree(it)
+                }
+            }
+    }
 }
 
 publishing {
