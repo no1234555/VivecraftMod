@@ -83,6 +83,9 @@ public class OpenVRStereoRenderer extends VRRenderer {
     }
 
     public void createRenderTexture(int lwidth, int lheight) {
+        width = lwidth;
+        height = lheight;
+
         this.LeftEyeTextureId = GlStateManager._genTexture();
         int i = GlStateManager._getInteger(GL11.GL_TEXTURE_BINDING_2D);
         RenderSystem.bindTexture(this.LeftEyeTextureId);
